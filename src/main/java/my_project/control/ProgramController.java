@@ -1,7 +1,13 @@
 package my_project.control;
 
+import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import my_project.model.House;
+import my_project.model.Picture;
+import my_project.model.Player;
+import my_project.model.StartBackground;
+import my_project.view.InputManager;
+
+import java.awt.event.KeyEvent;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern.
@@ -18,7 +24,8 @@ public class ProgramController {
 
     // Referenzen
     private final ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
-    private House firstHouse; // deklariert eine Referenz für ein Objekt der Klasse House
+    private Player p1;
+    private int currentScene;
 
     /**
      * Konstruktor
@@ -36,10 +43,28 @@ public class ProgramController {
      * was zu diesem Zeipunkt passieren muss.
      */
     public void startProgram() {
-        // Erstelle ein Objekt der Klasse House und initialisiere damit die Referenz house1
-        firstHouse = new House();
-        // Teile dem ViewController-Objekt mit, dass das House-Objekt gezeichnet werden soll
-        viewController.draw(firstHouse);
+        // Vorbereitungen
+        InputManager inputManager = new InputManager(this);
+        currentScene = 0;
+
+        // Startbildschirm (Szene 0)
+        // Ton
+        viewController.getSoundController().loadSound("src/main/resources/sound/bgm_startScreen.mp3","startBGM", true);
+        SoundController.playSound("startBGM");
+        // Bild
+        StartBackground sback = new StartBackground();
+        viewController.draw(sback,0);
+        Picture titleText = new Picture(100, 200, "src/main/resources/graphic/title_text.png");
+        viewController.draw(titleText,0);
+        // Interaktion
+        viewController.register(inputManager,0);
+
+        // Spielbildschirm (Szene 1)
+        viewController.createScene();
+        p1 = new Player(50,300);
+        viewController.draw(p1,1);
+
+        // Endbildschirm (Szene 2)
     }
 
     /**
@@ -47,6 +72,15 @@ public class ProgramController {
      * @param dt Zeit seit letztem Frame in Sekunden
      */
     public void updateProgram(double dt){
+
+    }
+
+    public void processKeyboardInput(int keyCode) {
+        if (keyCode == KeyEvent.VK_SPACE && currentScene == 0) {
+            currentScene = 1;
+            viewController.showScene(currentScene);
+            SoundController.stopSound("startBGM");
+        }
 
     }
 }

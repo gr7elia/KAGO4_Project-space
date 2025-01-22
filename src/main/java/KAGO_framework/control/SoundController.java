@@ -41,9 +41,9 @@ public class SoundController {
     private boolean initialized, started;
 
     // Referenzen
-    private static ArrayList<Sound> loadedSounds = new ArrayList<>();
-    private static Queue<String> playingQueue = new Queue<>();
-    private ArrayList<SoundData> soundsToLoad;
+    private static final ArrayList<Sound> loadedSounds = new ArrayList<>();
+    private static final Queue<String> playingQueue = new Queue<>();
+    private final ArrayList<SoundData> soundsToLoad;
 
 
     /**

@@ -22,8 +22,8 @@ public class InputManager extends InteractiveGraphicalObject {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-
+    public void keyReleased(int key){
+        programController.processKeyboardInput(key);
     }
 
 }

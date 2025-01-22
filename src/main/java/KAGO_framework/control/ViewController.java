@@ -167,7 +167,7 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
     /**
      * Zeichnet und aktualisiert ein neues Objekt in der gewünschten Szene
      * @param d Das zu zeichnende Objekt (Interface Drawable muss implementiert werden)
-     * @param sceneIndex Die Nummer der Szene für das Objekt
+     * @param sceneIndex Die Nummer der Szene für das Objekt (die erste Szene hat den Index 0)
      */
     public void draw(Drawable d, int sceneIndex){
         if ( sceneIndex < scenes.size() && d != null){
