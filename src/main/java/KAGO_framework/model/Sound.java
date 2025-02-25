@@ -18,7 +18,7 @@ public class Sound {
     private String filename;
     private String name;
     private String path;
-    private Media sound;
+    private Media sound;_vvv+
 
     // Referenz
     private MediaPlayer mediaPlayer;

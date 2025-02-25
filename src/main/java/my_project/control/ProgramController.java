@@ -77,9 +77,19 @@ public class ProgramController {
 
     public void processKeyboardInput(int keyCode) {
         if (keyCode == KeyEvent.VK_SPACE && currentScene == 0) {
+            InputManager inputManager = new InputManager(this);
             currentScene = 1;
             viewController.showScene(currentScene);
             SoundController.stopSound("startBGM");
+
+            viewController.getSoundController().loadSound("src/main/resources/sound/GUILES THEMES1.mp3", "StartSc1", true);
+            SoundController.playSound("StartSC1");
+
+            StartBackground sback = new StartBackground();
+            viewController.draw(sback, 1);
+            Picture space = new Picture(0, 0, "src/main/resources/graphic/Weltall.png");
+            viewController.draw(space, 1);
+            viewController.register(inputManager, 1);
         }
 
     }

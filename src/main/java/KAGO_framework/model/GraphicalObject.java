@@ -107,6 +107,13 @@ public class GraphicalObject implements Drawable {
      */
     public void update(double dt){
 
+        GraphicalObject graphicalObject = this;
+        graphicalObject.x += dt;
+
+        if (graphicalObject.x > 805) {
+            graphicalObject.x = -5;
+        }
+
     }
 
     /**
